@@ -102,9 +102,7 @@ class Articles extends ResourceBase {
     foreach ($fields as $key => $field) {
       $result[$key] = $field->getValue();
     }
-    $response = new ResourceResponse($result);
-    $response->addCacheableDependency($result);
-    return $response;
+    return new ResourceResponse($result);
   }
 
 }

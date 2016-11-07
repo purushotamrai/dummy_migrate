@@ -6,7 +6,3 @@ core: 8.x
 dependencies:
   - migrate_plus
   - migrate_tools
-  - devel
-  - kint
-  - admin_toolbar
-  - admin_toolbar_tools
