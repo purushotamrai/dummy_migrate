@@ -9,6 +9,7 @@ use Drupal\rest\ResourceResponse;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * Provides a resource to get view modes by entity and bundle.
@@ -96,13 +97,19 @@ class Articles extends ResourceBase {
       throw new AccessDeniedHttpException();
     }
     $entity = $this->entityTypeManager->getStorage('node')->load($entity);
-    $fields = $entity->getFields();
+    if ($entity) {
+      $fields = $entity->getFields();
 
-    $result = [];
-    foreach ($fields as $key => $field) {
-      $result[$key] = $field->getValue();
+      $result = [];
+      foreach ($fields as $key => $field) {
+        $result[$key] = $field->getValue();
+      }
+      return new ResourceResponse($result);
     }
-    return new ResourceResponse($result);
+    else {
+      throw new HttpException(t('Entity was not found'));
+    }
   }
+
 
 }
