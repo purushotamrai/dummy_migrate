@@ -21,7 +21,7 @@ source:
       -
         name: body
         label: Body
-        selector: body/und/item/safe_value
+        selector: body/und/item/value
       -
         name: field_tags
         label: Field Tags
