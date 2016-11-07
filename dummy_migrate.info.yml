@@ -1,0 +1,12 @@
+name: Dummy Migrations
+type: module
+description: 'Dummy Migrations from Drupal 7 XML'
+# version: VERSION
+core: 8.x
+dependencies:
+  - migrate_plus
+  - migrate_tools
+  - devel
+  - kint
+  - admin_toolbar
+  - admin_toolbar_tools

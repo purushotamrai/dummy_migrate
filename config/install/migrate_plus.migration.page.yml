@@ -1,0 +1,93 @@
+# Migration configuration for page content.
+id: page
+label: Basic pages from D7
+migration_group: content
+source:
+  plugin: url
+  # Specifies the xml parser plugin.
+  data_parser_plugin: xml
+  # For XML, item_selector is the xpath used to select our source items (tags in this case).
+  # For JSON, this would be an integer depth at which importable items are found.
+  item_selector: /result
+  fields:
+      -
+        name: title
+        label: Title
+        selector: title
+      -
+        name: nid
+        label: Legacy Node Id
+        selector: nid
+      -
+        name: body
+        label: Body
+        selector: body/und/item/safe_value
+  ids:
+    nid:
+      type: string
+  urls:
+    - http://d.7/api/node/1.xml
+    - http://d.7/api/node/2.xml
+    - http://d.7/api/node/3.xml
+    - http://d.7/api/node/4.xml
+    - http://d.7/api/node/5.xml
+    - http://d.7/api/node/6.xml
+    - http://d.7/api/node/7.xml
+    - http://d.7/api/node/8.xml
+    - http://d.7/api/node/9.xml
+    - http://d.7/api/node/10.xml
+    - http://d.7/api/node/11.xml
+    - http://d.7/api/node/12.xml
+    - http://d.7/api/node/13.xml
+    - http://d.7/api/node/14.xml
+    - http://d.7/api/node/15.xml
+    - http://d.7/api/node/16.xml
+    - http://d.7/api/node/17.xml
+    - http://d.7/api/node/18.xml
+    - http://d.7/api/node/19.xml
+    - http://d.7/api/node/20.xml
+    - http://d.7/api/node/21.xml
+    - http://d.7/api/node/22.xml
+    - http://d.7/api/node/23.xml
+    - http://d.7/api/node/24.xml
+    - http://d.7/api/node/25.xml
+    - http://d.7/api/node/26.xml
+    - http://d.7/api/node/27.xml
+    - http://d.7/api/node/28.xml
+    - http://d.7/api/node/29.xml
+    - http://d.7/api/node/30.xml
+    - http://d.7/api/node/31.xml
+    - http://d.7/api/node/32.xml
+    - http://d.7/api/node/33.xml
+    - http://d.7/api/node/34.xml
+    - http://d.7/api/node/35.xml
+    - http://d.7/api/node/36.xml
+    - http://d.7/api/node/37.xml
+    - http://d.7/api/node/38.xml
+    - http://d.7/api/node/39.xml
+    - http://d.7/api/node/40.xml
+    - http://d.7/api/node/41.xml
+    - http://d.7/api/node/42.xml
+    - http://d.7/api/node/43.xml
+    - http://d.7/api/node/44.xml
+    - http://d.7/api/node/45.xml
+    - http://d.7/api/node/46.xml
+    - http://d.7/api/node/47.xml
+    - http://d.7/api/node/48.xml
+    - http://d.7/api/node/49.xml
+    - http://d.7/api/node/50.xml
+destination:
+  plugin: entity:node
+process:
+  type:
+    plugin: default_value
+    default_value: page
+  uid:
+    plugin: default_value
+    default_value: 1
+  title: title
+  body: body
+dependencies:
+  enforced:
+    module:
+      - dummy_migrate

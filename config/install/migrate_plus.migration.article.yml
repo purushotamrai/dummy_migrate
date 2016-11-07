@@ -1,0 +1,122 @@
+# Migration configuration for page content.
+id: article
+label: Articles from D7
+migration_group: content
+source:
+  plugin: url
+  # Specifies the xml parser plugin.
+  data_parser_plugin: xml
+  # For XML, item_selector is the xpath used to select our source items (tags in this case).
+  # For JSON, this would be an integer depth at which importable items are found.
+  item_selector: /result
+  fields:
+      -
+        name: title
+        label: Title
+        selector: title
+      -
+        name: nid
+        label: Legacy Node Id
+        selector: nid
+      -
+        name: body
+        label: Body
+        selector: body/und/item/safe_value
+      -
+        name: field_tags
+        label: Field Tags
+        selector: field_tags/und/item/tid
+      -
+        name: field_basic_page
+        label: Field Basic Page
+        selector: field_basic_page/und/item/target_id
+      -
+        name: field_image
+        label: Field Image
+        selector: field_image/und/item/fid
+  ids:
+    nid:
+      type: string
+  urls:
+    - http://d.7/api/node/51.xml
+    - http://d.7/api/node/52.xml
+    - http://d.7/api/node/53.xml
+    - http://d.7/api/node/54.xml
+    - http://d.7/api/node/55.xml
+    - http://d.7/api/node/56.xml
+    - http://d.7/api/node/57.xml
+    - http://d.7/api/node/58.xml
+    - http://d.7/api/node/59.xml
+    - http://d.7/api/node/60.xml
+    - http://d.7/api/node/61.xml
+    - http://d.7/api/node/62.xml
+    - http://d.7/api/node/63.xml
+    - http://d.7/api/node/64.xml
+    - http://d.7/api/node/65.xml
+    - http://d.7/api/node/66.xml
+    - http://d.7/api/node/67.xml
+    - http://d.7/api/node/68.xml
+    - http://d.7/api/node/69.xml
+    - http://d.7/api/node/70.xml
+    - http://d.7/api/node/71.xml
+    - http://d.7/api/node/72.xml
+    - http://d.7/api/node/73.xml
+    - http://d.7/api/node/74.xml
+    - http://d.7/api/node/75.xml
+    - http://d.7/api/node/76.xml
+    - http://d.7/api/node/77.xml
+    - http://d.7/api/node/78.xml
+    - http://d.7/api/node/79.xml
+    - http://d.7/api/node/80.xml
+    - http://d.7/api/node/81.xml
+    - http://d.7/api/node/82.xml
+    - http://d.7/api/node/83.xml
+    - http://d.7/api/node/84.xml
+    - http://d.7/api/node/85.xml
+    - http://d.7/api/node/86.xml
+    - http://d.7/api/node/87.xml
+    - http://d.7/api/node/88.xml
+    - http://d.7/api/node/89.xml
+    - http://d.7/api/node/90.xml
+    - http://d.7/api/node/91.xml
+    - http://d.7/api/node/92.xml
+    - http://d.7/api/node/93.xml
+    - http://d.7/api/node/94.xml
+    - http://d.7/api/node/95.xml
+    - http://d.7/api/node/96.xml
+    - http://d.7/api/node/97.xml
+    - http://d.7/api/node/98.xml
+    - http://d.7/api/node/99.xml
+    - http://d.7/api/node/100.xml
+destination:
+  plugin: entity:node
+process:
+  type:
+    plugin: default_value
+    default_value: article
+  uid:
+    plugin: default_value
+    default_value: 1
+  title: title
+  body: body
+  field_tags:
+    plugin: migration
+    migration: term
+    source: field_tags
+  field_basic_page:
+    plugin: migration
+    migration: page
+    source: field_basic_page
+  field_image:
+    source: field_image
+    plugin: migration
+    migration: file
+migration_dependencies:
+  required:
+    - page
+    - term
+    - file
+dependencies:
+  enforced:
+    module:
+      - dummy_migrate
